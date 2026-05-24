@@ -23,7 +23,7 @@
 
     <hr class="sidebar-divider">
 
-    @if(isset($mascota))
+    @if(isset($mascota) && request()->routeIs('veterinario.*'))
         <hr class="sidebar-divider">
 
         {{-- ── Tablero Clínico ──────────────────────────────────────── --}}

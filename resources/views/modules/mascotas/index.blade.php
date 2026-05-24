@@ -54,42 +54,42 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($mascotas as $mascota)
+                        @forelse($mascotas as $itemMascota)
                             <tr>
                                 <td class="text-center font-weight-bold text-primary small">
-                                    #{{ $mascota->folioFormateado() }}
+                                    #{{ $itemMascota->folioFormateado() }}
                                 </td>
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <div class="user-avatar veterinario mr-2" style="font-size:1rem">
-                                            {{ $mascota->emojiEspecie() }}
+                                            {{ $itemMascota->emojiEspecie() }}
                                         </div>
                                         <div>
-                                            <div class="font-weight-bold">{{ $mascota->nombre }}</div>
-                                            <small class="text-muted">{{ $mascota->tipo_sangre ?: '—' }}</small>
+                                            <div class="font-weight-bold">{{ $itemMascota->nombre }}</div>
+                                            <small class="text-muted">{{ $itemMascota->tipo_sangre ?: '—' }}</small>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="small">
-                                    {{ $mascota->especie ?: '—' }}
-                                    @if($mascota->raza)
-                                        <span class="text-muted">/ {{ $mascota->raza }}</span>
+                                    {{ $itemMascota->especie ?: '—' }}
+                                    @if($itemMascota->raza)
+                                        <span class="text-muted">/ {{ $itemMascota->raza }}</span>
                                     @endif
                                 </td>
                                 <td class="small">
-                                    @if($mascota->dueno)
+                                    @if($itemMascota->dueno)
                                         <i class="fas fa-user text-primary mr-1"></i>
-                                        {{ $mascota->dueno->nombre_completo }}
+                                        {{ $itemMascota->dueno->nombre_completo }}
                                     @else
                                         <span class="text-muted"><i class="fas fa-question-circle mr-1"></i> Sin dueño</span>
                                     @endif
                                 </td>
-                                <td class="small">{{ $mascota->edadAnios() ?: '—' }}</td>
+                                <td class="small">{{ $itemMascota->edadAnios() ?: '—' }}</td>
                                 <td class="text-center">
-                                    <span class="badge badge-rol badge-admin">{{ $mascota->consultas_count }}</span>
+                                    <span class="badge badge-rol badge-admin">{{ $itemMascota->consultas_count }}</span>
                                 </td>
                                 <td>
-                                    @if($mascota->es_adoptado)
+                                    @if($itemMascota->es_adoptado)
                                         <span class="badge badge-activo"><i class="fas fa-heart mr-1"></i> Adoptado</span>
                                     @else
                                         <span class="badge badge-inactivo" style="background:#f0f4ff;color:#4e73df;border-color:#b8c7ff;">
@@ -99,16 +99,16 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="d-flex justify-content-center" style="gap:6px;">
-                                        <a href="{{ route('mascotas.edit', $mascota) }}" class="btn btn-info btn-accion" title="Editar">
+                                        <a href="{{ route('mascotas.edit', $itemMascota) }}" class="btn btn-info btn-accion" title="Editar">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         <button type="button" class="btn btn-danger btn-accion"
-                                                data-delete-form="form-del-{{ $mascota->id }}"
-                                                data-user-name="{{ $mascota->nombre }}"
+                                                data-delete-form="form-del-{{ $itemMascota->id }}"
+                                                data-user-name="{{ $itemMascota->nombre }}"
                                                 title="Eliminar">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
-                                        <form id="form-del-{{ $mascota->id }}" action="{{ route('mascotas.destroy', $mascota) }}"
+                                        <form id="form-del-{{ $itemMascota->id }}" action="{{ route('mascotas.destroy', $itemMascota) }}"
                                               method="POST" style="display:none;">
                                             @csrf @method('DELETE')
                                         </form>
