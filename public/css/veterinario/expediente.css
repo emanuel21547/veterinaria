@@ -1,0 +1,301 @@
+/* ==========================================================================
+   expediente.css — Pantalla de Buscador de Expediente del Veterinario
+   ========================================================================== */
+
+/* ── Contenedor centrado del buscador ────────────────────────── */
+.expediente-wrapper {
+    max-width: 680px;
+    margin: 2rem auto;
+}
+
+/* ── Tarjeta principal ───────────────────────────────────────── */
+.card-expediente {
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 2rem rgba(58, 59, 69, 0.12);
+    overflow: visible;
+}
+
+.card-expediente .card-header {
+    background: linear-gradient(135deg, #1cc88a 0%, #17a673 100%);
+    border-radius: 1rem 1rem 0 0;
+    padding: 1.25rem 1.5rem;
+    border: none;
+}
+
+.card-expediente .card-header h6 {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    margin: 0;
+    letter-spacing: 0.02rem;
+}
+
+/* ── Título del buscador ──────────────────────────────────────── */
+.buscador-titulo {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #3a3b45;
+    text-align: center;
+    margin-bottom: 1.25rem;
+}
+
+/* ── Input de búsqueda ───────────────────────────────────────── */
+.buscador-input-wrapper {
+    position: relative;
+}
+
+.buscador-input {
+    width: 100%;
+    padding: 0.85rem 1rem 0.85rem 3rem;
+    font-size: 1rem;
+    border: 2px solid #e3e6f0;
+    border-radius: 0.6rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+    background: #fff;
+}
+
+.buscador-input:focus {
+    border-color: #1cc88a;
+    box-shadow: 0 0 0 0.2rem rgba(28, 200, 138, 0.2);
+}
+
+.buscador-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #b7b9cc;
+    font-size: 1rem;
+    pointer-events: none;
+    transition: color 0.2s ease;
+}
+
+.buscador-input:focus + .buscador-icon,
+.buscador-input-wrapper:focus-within .buscador-icon {
+    color: #1cc88a;
+}
+
+/* ── Spinner de carga ─────────────────────────────────────────── */
+.buscador-spinner {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+}
+
+/* ── Dropdown de resultados ──────────────────────────────────── */
+.resultados-dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: #fff;
+    border: 1px solid #e3e6f0;
+    border-radius: 0.6rem;
+    box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.12);
+    max-height: 280px;
+    overflow-y: auto;
+    display: none;
+}
+
+.resultados-dropdown.visible {
+    display: block;
+    animation: dropIn 0.2s ease;
+}
+
+@keyframes dropIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.resultado-item {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border-bottom: 1px solid #f1f3f8;
+    transition: background-color 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.resultado-item:last-child { border-bottom: none; }
+
+.resultado-item:hover,
+.resultado-item.seleccionado {
+    background-color: #f0faf6;
+}
+
+.resultado-mascota-nombre {
+    font-weight: 700;
+    color: #3a3b45;
+    font-size: 0.95rem;
+}
+
+.resultado-dueno {
+    font-size: 0.8rem;
+    color: #858796;
+    margin-top: 2px;
+}
+
+.resultado-folio {
+    font-size: 0.78rem;
+    color: #1cc88a;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.sin-resultados {
+    padding: 1rem;
+    text-align: center;
+    color: #858796;
+    font-size: 0.9rem;
+}
+
+/* ── Mascota seleccionada ────────────────────────────────────── */
+.mascota-seleccionada {
+    background: #f0faf6;
+    border: 1px solid #a3e9cc;
+    border-radius: 0.6rem;
+    padding: 0.85rem 1rem;
+    display: none;
+    align-items: center;
+    gap: 0.75rem;
+    animation: fadeIn 0.3s ease;
+}
+
+.mascota-seleccionada.visible {
+    display: flex;
+}
+
+.mascota-sel-avatar {
+    width: 42px;
+    height: 42px;
+    background: #1cc88a;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.mascota-sel-info {
+    flex: 1;
+}
+
+.mascota-sel-nombre {
+    font-weight: 700;
+    color: #17a673;
+    font-size: 0.95rem;
+}
+
+.mascota-sel-detalle {
+    font-size: 0.8rem;
+    color: #858796;
+}
+
+/* ── Botones de acción ───────────────────────────────────────── */
+.expediente-acciones {
+    display: none;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+    animation: fadeIn 0.3s ease;
+}
+
+.expediente-acciones.visible {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn-expediente {
+    flex: 1;
+    min-width: 180px;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.6rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-expediente:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* ── Historial de consultas ──────────────────────────────────── */
+.consulta-card {
+    border: none;
+    border-radius: 0.75rem;
+    border-left: 4px solid #1cc88a;
+    box-shadow: 0 0.1rem 0.8rem rgba(58,59,69,0.08);
+    margin-bottom: 1rem;
+    transition: box-shadow 0.2s ease;
+}
+
+.consulta-card:hover {
+    box-shadow: 0 0.3rem 1.2rem rgba(58,59,69,0.15);
+}
+
+.consulta-header {
+    padding: 0.85rem 1.25rem;
+    background: #f8f9fc;
+    border-radius: 0.75rem 0.75rem 0 0;
+    cursor: pointer;
+    border-bottom: 1px solid #e3e6f0;
+}
+
+.consulta-body {
+    padding: 1.25rem;
+}
+
+.seccion-clinica {
+    background: #f8f9fc;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    border-left: 3px solid #4e73df;
+}
+
+.seccion-clinica:last-child { margin-bottom: 0; }
+
+.seccion-titulo {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    color: #4e73df;
+    margin-bottom: 0.5rem;
+}
+
+.seccion-clinica.verde  { border-left-color: #1cc88a; }
+.seccion-clinica.verde .seccion-titulo { color: #1cc88a; }
+.seccion-clinica.naranja { border-left-color: #f6c23e; }
+.seccion-clinica.naranja .seccion-titulo { color: #d4a017; }
+.seccion-clinica.rojo { border-left-color: #e74a3b; }
+.seccion-clinica.rojo .seccion-titulo { color: #e74a3b; }
+.seccion-clinica.info { border-left-color: #36b9cc; }
+.seccion-clinica.info .seccion-titulo { color: #36b9cc; }
+
+/* ── Ficha de mascota en historial ───────────────────────────── */
+.ficha-mascota {
+    background: linear-gradient(135deg, #1cc88a08, #17a67308);
+    border: 1px solid #a3e9cc;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}

@@ -13,17 +13,17 @@
 
     <hr class="sidebar-divider my-0">
 
-    {{-- Dashboard --}}
-    <li class="nav-item {{ request()->routeIs('home') ? 'active' : '' }}">
+    {{-- Expediente — Pantalla principal ─────────────────────────────── --}}
+    <li class="nav-item {{ request()->routeIs('home') || request()->routeIs('veterinario.expediente') || request()->routeIs('veterinario.mascota.*') || request()->routeIs('veterinario.consulta.*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('home') }}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span>
+            <i class="fas fa-fw fa-folder-open"></i>
+            <span>Expedientes</span>
         </a>
     </li>
 
     <hr class="sidebar-divider">
 
-    {{-- ── Consultas ────────────────────────────────────────────── --}}
+    {{-- ── Consulta ─────────────────────────────────────────────── --}}
     <div class="sidebar-heading">Consulta</div>
 
     {{-- Diagnóstico --}}
@@ -47,7 +47,6 @@
     {{-- ── Antecedentes ─────────────────────────────────────────── --}}
     <div class="sidebar-heading">Antecedentes</div>
 
-    {{-- Antecedentes: Alergias --}}
     <li class="nav-item {{ request()->routeIs('veterinario.ant.alergias') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('veterinario.ant.alergias') }}">
             <i class="fas fa-fw fa-allergies"></i>
@@ -55,7 +54,6 @@
         </a>
     </li>
 
-    {{-- Antecedentes: Lesiones --}}
     <li class="nav-item {{ request()->routeIs('veterinario.ant.lesiones') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('veterinario.ant.lesiones') }}">
             <i class="fas fa-fw fa-band-aid"></i>
@@ -63,7 +61,6 @@
         </a>
     </li>
 
-    {{-- Antecedentes: Patológicas --}}
     <li class="nav-item {{ request()->routeIs('veterinario.ant.patologicas') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('veterinario.ant.patologicas') }}">
             <i class="fas fa-fw fa-heartbeat"></i>
@@ -76,7 +73,6 @@
     {{-- ── Historial ────────────────────────────────────────────── --}}
     <div class="sidebar-heading">Historial</div>
 
-    {{-- Historial: Alimentación --}}
     <li class="nav-item {{ request()->routeIs('veterinario.hist.alimentacion') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('veterinario.hist.alimentacion') }}">
             <i class="fas fa-fw fa-bone"></i>

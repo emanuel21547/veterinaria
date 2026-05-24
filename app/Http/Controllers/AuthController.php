@@ -49,7 +49,8 @@ class AuthController extends Controller
             return view('modules.admin.dashboard');
         }
 
-        return view('modules.veterinario.dashboard');
+        // El veterinario ve directamente el buscador de expedientes
+        return view('modules.veterinario.expediente.index');
     }
 
     /**
