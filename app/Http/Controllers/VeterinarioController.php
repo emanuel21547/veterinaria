@@ -159,33 +159,95 @@ class VeterinarioController extends Controller
     // SECCIONES DEL MENÚ LATERAL (vistas placeholder)
     // ════════════════════════════════════════════════════════════════
 
-    public function diagnostico(): View
+    // ── Alergias ──
+    public function antAlergias(Mascota $mascota): View
     {
-        return view('modules.veterinario.diagnostico');
+        $alergias = $mascota->alergias()->orderByDesc('created_at')->get();
+        return view('modules.veterinario.antecedentes.alergias', compact('mascota', 'alergias'));
     }
 
-    public function tratamiento(): View
+    public function storeAlergia(Request $request, Mascota $mascota): RedirectResponse
     {
-        return view('modules.veterinario.tratamiento');
+        $request->validate([
+            'sustancia_alergena' => ['required', 'string', 'max:255'],
+            'reaccion'           => ['nullable', 'string'],
+        ]);
+        $mascota->alergias()->create($request->only('sustancia_alergena', 'reaccion'));
+        return back()->with('success', 'Alergia registrada.');
     }
 
-    public function antAlergias(): View
+    public function destroyAlergia(\App\Models\AntecedenteAlergia $alergia): RedirectResponse
     {
-        return view('modules.veterinario.antecedentes.alergias');
+        $alergia->delete();
+        return back()->with('success', 'Alergia eliminada.');
     }
 
-    public function antLesiones(): View
+    // ── Lesiones ──
+    public function antLesiones(Mascota $mascota): View
     {
-        return view('modules.veterinario.antecedentes.lesiones');
+        $lesiones = $mascota->lesiones()->orderByDesc('created_at')->get();
+        return view('modules.veterinario.antecedentes.lesiones', compact('mascota', 'lesiones'));
     }
 
-    public function antPatologicas(): View
+    public function storeLesion(Request $request, Mascota $mascota): RedirectResponse
     {
-        return view('modules.veterinario.antecedentes.patologicas');
+        $request->validate(['tipo_lesion' => ['required', 'string', 'max:255']]);
+        $mascota->lesiones()->create($request->only('tipo_lesion'));
+        return back()->with('success', 'Lesión registrada.');
     }
 
-    public function histAlimentacion(): View
+    public function destroyLesion(\App\Models\AntecedenteLesion $lesion): RedirectResponse
     {
-        return view('modules.veterinario.historial.alimentacion');
+        $lesion->delete();
+        return back()->with('success', 'Lesión eliminada.');
+    }
+
+    // ── Patológicas ──
+    public function antPatologicas(Mascota $mascota): View
+    {
+        $patologias = $mascota->patologias()->orderByDesc('created_at')->get();
+        return view('modules.veterinario.antecedentes.patologicas', compact('mascota', 'patologias'));
+    }
+
+    public function storePatologica(Request $request, Mascota $mascota): RedirectResponse
+    {
+        $request->validate([
+            'enfermedad' => ['required', 'string', 'max:255'],
+            'es_cronica' => ['nullable', 'boolean'],
+        ]);
+        $mascota->patologias()->create([
+            'enfermedad' => $request->enfermedad,
+            'es_cronica' => $request->has('es_cronica'),
+        ]);
+        return back()->with('success', 'Patología registrada.');
+    }
+
+    public function destroyPatologica(\App\Models\AntecedentePatologico $patologica): RedirectResponse
+    {
+        $patologica->delete();
+        return back()->with('success', 'Patología eliminada.');
+    }
+
+    // ── Alimentación ──
+    public function histAlimentacion(Mascota $mascota): View
+    {
+        $alimentacion = $mascota->historialAlimentacion()->orderByDesc('created_at')->get();
+        return view('modules.veterinario.historial.alimentacion', compact('mascota', 'alimentacion'));
+    }
+
+    public function storeAlimentacion(Request $request, Mascota $mascota): RedirectResponse
+    {
+        $request->validate([
+            'descripcion_dieta' => ['required', 'string'],
+            'frecuencia_diaria' => ['nullable', 'integer', 'min:1'],
+        ]);
+        $mascota->historialAlimentacion()->create($request->only('descripcion_dieta', 'frecuencia_diaria'));
+        return back()->with('success', 'Historial de alimentación registrado.');
+    }
+
+    public function destroyAlimentacion(\App\Models\HistorialAlimentacion $alimentacion): RedirectResponse
+    {
+        $alimentacion->delete();
+        return back()->with('success', 'Registro eliminado.');
     }
 }

@@ -71,12 +71,24 @@ Route::middleware('auth')->group(function () {
         Route::put('consulta/{consulta}',         [VeterinarioController::class, 'actualizarConsulta'])
              ->name('consulta.actualizar');
 
-        // Secciones individuales (vistas del menú lateral del vet)
-        Route::get('diagnostico',              [VeterinarioController::class, 'diagnostico'])    ->name('diagnostico');
-        Route::get('tratamiento',              [VeterinarioController::class, 'tratamiento'])    ->name('tratamiento');
-        Route::get('antecedentes/alergias',    [VeterinarioController::class, 'antAlergias'])   ->name('ant.alergias');
-        Route::get('antecedentes/lesiones',    [VeterinarioController::class, 'antLesiones'])   ->name('ant.lesiones');
-        Route::get('antecedentes/patologicas', [VeterinarioController::class, 'antPatologicas'])->name('ant.patologicas');
-        Route::get('historial/alimentacion',   [VeterinarioController::class, 'histAlimentacion'])->name('hist.alimentacion');
+        // ── Antecedentes (Alergias) ──
+        Route::get('mascota/{mascota}/alergias',    [VeterinarioController::class, 'antAlergias'])   ->name('mascota.alergias');
+        Route::post('mascota/{mascota}/alergias',   [VeterinarioController::class, 'storeAlergia'])  ->name('mascota.alergias.store');
+        Route::delete('alergias/{alergia}',         [VeterinarioController::class, 'destroyAlergia'])->name('alergias.destroy');
+
+        // ── Antecedentes (Lesiones) ──
+        Route::get('mascota/{mascota}/lesiones',    [VeterinarioController::class, 'antLesiones'])   ->name('mascota.lesiones');
+        Route::post('mascota/{mascota}/lesiones',   [VeterinarioController::class, 'storeLesion'])   ->name('mascota.lesiones.store');
+        Route::delete('lesiones/{lesion}',          [VeterinarioController::class, 'destroyLesion']) ->name('lesiones.destroy');
+
+        // ── Antecedentes (Patológicas) ──
+        Route::get('mascota/{mascota}/patologicas', [VeterinarioController::class, 'antPatologicas'])->name('mascota.patologicas');
+        Route::post('mascota/{mascota}/patologicas',[VeterinarioController::class, 'storePatologica'])->name('mascota.patologicas.store');
+        Route::delete('patologicas/{patologica}',   [VeterinarioController::class, 'destroyPatologica'])->name('patologicas.destroy');
+
+        // ── Historial Alimentación ──
+        Route::get('mascota/{mascota}/alimentacion',[VeterinarioController::class, 'histAlimentacion'])->name('mascota.alimentacion');
+        Route::post('mascota/{mascota}/alimentacion',[VeterinarioController::class, 'storeAlimentacion'])->name('mascota.alimentacion.store');
+        Route::delete('alimentacion/{alimentacion}',[VeterinarioController::class, 'destroyAlimentacion'])->name('alimentacion.destroy');
     });
 });

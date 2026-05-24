@@ -23,64 +23,62 @@
 
     <hr class="sidebar-divider">
 
-    {{-- ── Consulta ─────────────────────────────────────────────── --}}
-    <div class="sidebar-heading">Consulta</div>
+    @if(isset($mascota))
+        <hr class="sidebar-divider">
 
-    {{-- Diagnóstico --}}
-    <li class="nav-item {{ request()->routeIs('veterinario.diagnostico') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('veterinario.diagnostico') }}">
-            <i class="fas fa-fw fa-microscope"></i>
-            <span>Diagnóstico</span>
-        </a>
-    </li>
+        {{-- ── Tablero Clínico ──────────────────────────────────────── --}}
+        <div class="sidebar-heading">
+            Paciente: {{ $mascota->nombre }}
+        </div>
 
-    {{-- Tratamiento --}}
-    <li class="nav-item {{ request()->routeIs('veterinario.tratamiento') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('veterinario.tratamiento') }}">
-            <i class="fas fa-fw fa-pills"></i>
-            <span>Tratamiento</span>
-        </a>
-    </li>
+        {{-- Consultas --}}
+        <li class="nav-item {{ request()->routeIs('veterinario.mascota.consultas') || request()->routeIs('veterinario.consulta.*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('veterinario.mascota.consultas', $mascota) }}">
+                <i class="fas fa-fw fa-stethoscope"></i>
+                <span>Historial de Consultas</span>
+            </a>
+        </li>
 
-    <hr class="sidebar-divider">
+        <hr class="sidebar-divider">
 
-    {{-- ── Antecedentes ─────────────────────────────────────────── --}}
-    <div class="sidebar-heading">Antecedentes</div>
+        {{-- ── Antecedentes ─────────────────────────────────────────── --}}
+        <div class="sidebar-heading">Antecedentes</div>
 
-    <li class="nav-item {{ request()->routeIs('veterinario.ant.alergias') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('veterinario.ant.alergias') }}">
-            <i class="fas fa-fw fa-allergies"></i>
-            <span>Alergias</span>
-        </a>
-    </li>
+        <li class="nav-item {{ request()->routeIs('veterinario.mascota.alergias') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('veterinario.mascota.alergias', $mascota) }}">
+                <i class="fas fa-fw fa-allergies"></i>
+                <span>Alergias</span>
+            </a>
+        </li>
 
-    <li class="nav-item {{ request()->routeIs('veterinario.ant.lesiones') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('veterinario.ant.lesiones') }}">
-            <i class="fas fa-fw fa-band-aid"></i>
-            <span>Lesiones</span>
-        </a>
-    </li>
+        <li class="nav-item {{ request()->routeIs('veterinario.mascota.lesiones') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('veterinario.mascota.lesiones', $mascota) }}">
+                <i class="fas fa-fw fa-band-aid"></i>
+                <span>Lesiones</span>
+            </a>
+        </li>
 
-    <li class="nav-item {{ request()->routeIs('veterinario.ant.patologicas') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('veterinario.ant.patologicas') }}">
-            <i class="fas fa-fw fa-heartbeat"></i>
-            <span>Patológicas</span>
-        </a>
-    </li>
+        <li class="nav-item {{ request()->routeIs('veterinario.mascota.patologicas') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('veterinario.mascota.patologicas', $mascota) }}">
+                <i class="fas fa-fw fa-heartbeat"></i>
+                <span>Patológicas</span>
+            </a>
+        </li>
 
-    <hr class="sidebar-divider">
+        <hr class="sidebar-divider">
 
-    {{-- ── Historial ────────────────────────────────────────────── --}}
-    <div class="sidebar-heading">Historial</div>
+        {{-- ── Historial ────────────────────────────────────────────── --}}
+        <div class="sidebar-heading">Historial</div>
 
-    <li class="nav-item {{ request()->routeIs('veterinario.hist.alimentacion') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('veterinario.hist.alimentacion') }}">
-            <i class="fas fa-fw fa-bone"></i>
-            <span>Alimentación</span>
-        </a>
-    </li>
+        <li class="nav-item {{ request()->routeIs('veterinario.mascota.alimentacion') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('veterinario.mascota.alimentacion', $mascota) }}">
+                <i class="fas fa-fw fa-bone"></i>
+                <span>Alimentación</span>
+            </a>
+        </li>
 
-    <hr class="sidebar-divider d-none d-md-block">
+        <hr class="sidebar-divider d-none d-md-block">
+    @endif
 
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
