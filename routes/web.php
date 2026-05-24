@@ -39,9 +39,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('usuarios', UsuarioController::class)->except(['show']);
 
         // Configuración del sistema
-        Route::get('configuracion', function () {
-            return view('modules.admin.configuracion');
-        })->name('configuracion');
+        Route::get('configuracion', [\App\Http\Controllers\ConfiguracionController::class, 'edit'])->name('configuracion');
+        Route::put('configuracion', [\App\Http\Controllers\ConfiguracionController::class, 'update'])->name('configuracion.update');
     });
 
     // ════════════════════════════════════════════════════════════════
