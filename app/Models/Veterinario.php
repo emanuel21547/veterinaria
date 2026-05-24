@@ -23,11 +23,15 @@ class Veterinario extends Model
     // Relaciones
     // ────────────────────────────────────────────────
 
-    /**
-     * Un veterinario pertenece a un usuario del sistema.
-     */
+    /** Un veterinario pertenece a un usuario del sistema. */
     public function usuario()
     {
         return $this->belongsTo(User::class, 'usuario_id');
+    }
+
+    /** Un veterinario puede tener muchas consultas. */
+    public function consultas()
+    {
+        return $this->hasMany(Consulta::class, 'veterinario_id');
     }
 }

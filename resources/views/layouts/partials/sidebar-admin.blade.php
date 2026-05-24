@@ -26,58 +26,39 @@
     {{-- ── Clínica ─────────────────────────────────────────────── --}}
     <div class="sidebar-heading">Clínica</div>
 
-    {{-- Pacientes --}}
-    <li class="nav-item {{ request()->routeIs('pacientes.*') ? 'active' : '' }}">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePacientes"
-            aria-expanded="false" aria-controls="collapsePacientes">
-            <i class="fas fa-fw fa-dog"></i>
-            <span>Pacientes</span>
-        </a>
-        <div id="collapsePacientes" class="collapse {{ request()->routeIs('pacientes.*') ? 'show' : '' }}"
-            data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Gestión de Pacientes:</h6>
-                <a class="collapse-item" href="#">Listar Pacientes</a>
-                <a class="collapse-item" href="#">Nuevo Paciente</a>
-            </div>
-        </div>
-    </li>
-
-    {{-- Propietarios --}}
-    <li class="nav-item {{ request()->routeIs('propietarios.*') ? 'active' : '' }}">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePropietarios"
-            aria-expanded="false" aria-controls="collapsePropietarios">
+    {{-- Dueños --}}
+    <li class="nav-item {{ request()->routeIs('duenos.*') ? 'active' : '' }}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDuenos"
+            aria-expanded="false" aria-controls="collapseDuenos">
             <i class="fas fa-fw fa-users"></i>
-            <span>Propietarios</span>
+            <span>Dueños</span>
         </a>
-        <div id="collapsePropietarios" class="collapse {{ request()->routeIs('propietarios.*') ? 'show' : '' }}"
+        <div id="collapseDuenos" class="collapse {{ request()->routeIs('duenos.*') ? 'show' : '' }}"
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Gestión de Propietarios:</h6>
-                <a class="collapse-item" href="#">Listar Propietarios</a>
-                <a class="collapse-item" href="#">Nuevo Propietario</a>
+                <h6 class="collapse-header">Gestión de Dueños:</h6>
+                <a class="collapse-item {{ request()->routeIs('duenos.index') ? 'active' : '' }}" href="{{ route('duenos.index') }}">Listar Dueños</a>
+                <a class="collapse-item {{ request()->routeIs('duenos.create') ? 'active' : '' }}" href="{{ route('duenos.create') }}">Nuevo Dueño</a>
             </div>
         </div>
     </li>
 
-    {{-- Citas --}}
-    <li class="nav-item {{ request()->routeIs('citas.*') ? 'active' : '' }}">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCitas"
-            aria-expanded="false" aria-controls="collapseCitas">
-            <i class="fas fa-fw fa-calendar-alt"></i>
-            <span>Citas</span>
+    {{-- Mascotas --}}
+    <li class="nav-item {{ request()->routeIs('mascotas.*') ? 'active' : '' }}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMascotas"
+            aria-expanded="false" aria-controls="collapseMascotas">
+            <i class="fas fa-fw fa-paw"></i>
+            <span>Mascotas</span>
         </a>
-        <div id="collapseCitas" class="collapse {{ request()->routeIs('citas.*') ? 'show' : '' }}"
+        <div id="collapseMascotas" class="collapse {{ request()->routeIs('mascotas.*') ? 'show' : '' }}"
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Gestión de Citas:</h6>
-                <a class="collapse-item" href="#">Ver Citas</a>
-                <a class="collapse-item" href="#">Nueva Cita</a>
+                <h6 class="collapse-header">Gestión de Mascotas:</h6>
+                <a class="collapse-item {{ request()->routeIs('mascotas.index') ? 'active' : '' }}" href="{{ route('mascotas.index') }}">Listar Mascotas</a>
+                <a class="collapse-item {{ request()->routeIs('mascotas.create') ? 'active' : '' }}" href="{{ route('mascotas.create') }}">Nueva Mascota</a>
             </div>
         </div>
     </li>
-
-    <hr class="sidebar-divider">
 
     {{-- ── Administración ──────────────────────────────────────── --}}
     <div class="sidebar-heading">Administración</div>
