@@ -13,10 +13,15 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'name'     => 'admin',
-            'email'    => 'admin@veterinaria.com',
-            'password' => Hash::make('admin'),
-        ]);
+        User::updateOrCreate(
+            ['email' => 'admin@veterinaria.com'],
+            [
+                'name'     => 'admin',
+                'email'    => 'admin@veterinaria.com',
+                'password' => Hash::make('admin'),
+                'rol'      => 'admin',
+                'activo'   => true,
+            ]
+        );
     }
 }

@@ -20,9 +20,12 @@ class AuthController extends Controller
         ];
 
         if (Auth::attempt($credenciales)) {
+            $request->session()->regenerate();
             return to_route('home');
         } else {
-            return to_route('login');
+            return back()->withErrors([
+                'email' => 'Las credenciales no coinciden con nuestros registros.',
+            ])->withInput($request->only('email'));
         }
     }
 

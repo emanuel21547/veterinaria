@@ -1,0 +1,260 @@
+/* ==========================================================================
+   usuarios.css — Estilos del módulo de Gestión de Usuarios
+   ========================================================================== */
+
+/* ── Cabecera de página ─────────────────────────────────────────── */
+.page-header {
+    border-bottom: 2px solid #e3e6f0;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.page-header .page-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #3a3b45;
+}
+
+/* ── Tarjeta principal ──────────────────────────────────────────── */
+.card-usuarios {
+    border: none;
+    border-radius: 0.75rem;
+    box-shadow: 0 0.15rem 1.75rem rgba(58, 59, 69, 0.1);
+}
+
+.card-usuarios .card-header {
+    background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+    border-radius: 0.75rem 0.75rem 0 0;
+    padding: 1rem 1.5rem;
+}
+
+.card-usuarios .card-header h6 {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* ── Tabla de usuarios ──────────────────────────────────────────── */
+.table-usuarios thead th {
+    background-color: #f8f9fc;
+    color: #4e73df;
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    border-top: none;
+    white-space: nowrap;
+}
+
+.table-usuarios tbody tr {
+    transition: background-color 0.15s ease;
+}
+
+.table-usuarios tbody tr:hover {
+    background-color: #f0f4ff;
+}
+
+.table-usuarios td {
+    vertical-align: middle;
+    font-size: 0.875rem;
+}
+
+/* ── Avatar de usuario ──────────────────────────────────────────── */
+.user-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.875rem;
+    flex-shrink: 0;
+}
+
+.user-avatar.admin {
+    background-color: #e8edff;
+    color: #4e73df;
+}
+
+.user-avatar.veterinario {
+    background-color: #e6f9f0;
+    color: #1cc88a;
+}
+
+/* ── Badges de rol y estado ─────────────────────────────────────── */
+.badge-rol {
+    font-size: 0.72rem;
+    padding: 0.3em 0.7em;
+    border-radius: 30px;
+    font-weight: 600;
+    letter-spacing: 0.03rem;
+}
+
+.badge-admin {
+    background-color: #e8edff;
+    color: #4e73df;
+    border: 1px solid #b8c7ff;
+}
+
+.badge-veterinario {
+    background-color: #e6f9f0;
+    color: #1cc88a;
+    border: 1px solid #a3e9cc;
+}
+
+.badge-activo {
+    background-color: #e6f9f0;
+    color: #1cc88a;
+    border: 1px solid #a3e9cc;
+    font-size: 0.72rem;
+    padding: 0.3em 0.7em;
+    border-radius: 30px;
+    font-weight: 600;
+}
+
+.badge-inactivo {
+    background-color: #fce8e8;
+    color: #e74a3b;
+    border: 1px solid #f5b7b1;
+    font-size: 0.72rem;
+    padding: 0.3em 0.7em;
+    border-radius: 30px;
+    font-weight: 600;
+}
+
+/* ── Botones de acción en tabla ─────────────────────────────────── */
+.btn-accion {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    font-size: 0.8rem;
+}
+
+.btn-accion:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+/* ── Barra de búsqueda y filtros ────────────────────────────────── */
+.filtros-bar {
+    background: #f8f9fc;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid #e3e6f0;
+}
+
+/* ── Formulario de create/edit ──────────────────────────────────── */
+.form-section {
+    background: #f8f9fc;
+    border-left: 4px solid #4e73df;
+    border-radius: 0 0.5rem 0.5rem 0;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-section-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    color: #4e73df;
+    margin-bottom: 0.25rem;
+}
+
+.section-veterinario {
+    border-left-color: #1cc88a;
+    display: none;
+    animation: slideDown 0.3s ease both;
+}
+
+.section-veterinario .form-section-title {
+    color: #1cc88a;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Preview firma ──────────────────────────────────────────────── */
+.firma-preview {
+    max-width: 200px;
+    max-height: 80px;
+    border: 2px dashed #dee2e6;
+    border-radius: 0.5rem;
+    padding: 4px;
+    object-fit: contain;
+    background: #fff;
+}
+
+/* ── Toggle contraseña ──────────────────────────────────────────── */
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper .toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #b7b9cc;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 0.875rem;
+    transition: color 0.2s ease;
+    z-index: 5;
+}
+
+.password-wrapper .toggle-password:hover {
+    color: #4e73df;
+}
+
+/* ── Modal de confirmación ──────────────────────────────────────── */
+.modal-delete .modal-header {
+    background: linear-gradient(135deg, #e74a3b, #c0392b);
+    color: #fff;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.modal-delete .modal-header .close {
+    color: #fff;
+    opacity: 0.8;
+}
+
+/* ── Paginación ─────────────────────────────────────────────────── */
+.pagination .page-link {
+    color: #4e73df;
+    border-radius: 6px;
+    margin: 0 2px;
+    border: 1px solid #e3e6f0;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #4e73df;
+    border-color: #4e73df;
+}
+
+/* ── Alertas de sesión ──────────────────────────────────────────── */
+.alert-session {
+    border-radius: 0.5rem;
+    border-left: 4px solid;
+    animation: fadeIn 0.4s ease;
+}
+
+.alert-session.alert-success { border-left-color: #1cc88a; }
+.alert-session.alert-danger  { border-left-color: #e74a3b; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}

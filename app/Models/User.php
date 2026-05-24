@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -14,7 +13,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     /**
-     * The attributes that are mass assignable.
+     * Campos asignables en masa.
      *
      * @var list<string>
      */
@@ -22,10 +21,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'rol',
+        'activo',
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * Campos ocultos en serialización.
      *
      * @var list<string>
      */
@@ -35,7 +36,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * Casts de atributos.
      *
      * @return array<string, string>
      */
@@ -43,7 +44,72 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'password'          => 'hashed',
+            'activo'            => 'boolean',
         ];
+    }
+
+    // ────────────────────────────────────────────────
+    // Relaciones
+    // ────────────────────────────────────────────────
+
+    /**
+     * Un usuario puede tener un perfil de veterinario.
+     */
+    public function veterinario()
+    {
+        return $this->hasOne(Veterinario::class, 'usuario_id');
+    }
+
+    // ────────────────────────────────────────────────
+    // Scopes
+    // ────────────────────────────────────────────────
+
+    /**
+     * Filtra solo usuarios activos.
+     */
+    public function scopeActivos($query)
+    {
+        return $query->where('activo', true);
+    }
+
+    /**
+     * Filtra por rol.
+     */
+    public function scopeDeRol($query, string $rol)
+    {
+        return $query->where('rol', $rol);
+    }
+
+    // ────────────────────────────────────────────────
+    // Helpers
+    // ────────────────────────────────────────────────
+
+    /**
+     * Devuelve true si el usuario es administrador.
+     */
+    public function esAdmin(): bool
+    {
+        return $this->rol === 'admin';
+    }
+
+    /**
+     * Devuelve true si el usuario es veterinario.
+     */
+    public function esVeterinario(): bool
+    {
+        return $this->rol === 'veterinario';
+    }
+
+    /**
+     * Etiqueta legible del rol.
+     */
+    public function rolLabel(): string
+    {
+        return match ($this->rol) {
+            'admin'       => 'Administrador',
+            'veterinario' => 'Veterinario',
+            default       => 'Sin rol',
+        };
     }
 }
