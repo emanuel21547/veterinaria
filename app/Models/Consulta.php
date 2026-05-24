@@ -14,10 +14,6 @@ class Consulta extends Model
         'talla',
         'diagnostico',
         'tratamiento',
-        'antecedentes_alergias',
-        'antecedentes_lesiones',
-        'antecedentes_patologicas',
-        'historial_alimentacion',
     ];
 
     protected function casts(): array

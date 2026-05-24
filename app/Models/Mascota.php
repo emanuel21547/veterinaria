@@ -45,6 +45,26 @@ class Mascota extends Model
         return $this->hasOne(Consulta::class, 'mascota_id')->latestOfMany('fecha_consulta');
     }
 
+    public function alergias()
+    {
+        return $this->hasMany(AntecedenteAlergia::class, 'mascota_id');
+    }
+
+    public function lesiones()
+    {
+        return $this->hasMany(AntecedenteLesion::class, 'mascota_id');
+    }
+
+    public function patologias()
+    {
+        return $this->hasMany(AntecedentePatologico::class, 'mascota_id');
+    }
+
+    public function historialAlimentacion()
+    {
+        return $this->hasMany(HistorialAlimentacion::class, 'mascota_id');
+    }
+
     // ── Helpers ─────────────────────────────────────────────────
 
     /** Folio formateado (ej: 001). */
