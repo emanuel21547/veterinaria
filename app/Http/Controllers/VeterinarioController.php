@@ -98,10 +98,6 @@ class VeterinarioController extends Controller
             'talla'          => ['nullable', 'numeric', 'min:0', 'max:999'],
             'diagnostico'    => ['nullable', 'string'],
             'tratamiento'    => ['nullable', 'string'],
-            'antecedentes_alergias'    => ['nullable', 'string'],
-            'antecedentes_lesiones'    => ['nullable', 'string'],
-            'antecedentes_patologicas' => ['nullable', 'string'],
-            'historial_alimentacion'   => ['nullable', 'string'],
         ]);
 
         // Obtener el perfil de veterinario del usuario actual
@@ -121,10 +117,6 @@ class VeterinarioController extends Controller
             'talla'                    => $request->talla,
             'diagnostico'              => $request->diagnostico,
             'tratamiento'              => $request->tratamiento,
-            'antecedentes_alergias'    => $request->antecedentes_alergias,
-            'antecedentes_lesiones'    => $request->antecedentes_lesiones,
-            'antecedentes_patologicas' => $request->antecedentes_patologicas,
-            'historial_alimentacion'   => $request->historial_alimentacion,
         ]);
 
         return redirect()
@@ -152,16 +144,10 @@ class VeterinarioController extends Controller
             'talla'          => ['nullable', 'numeric', 'min:0'],
             'diagnostico'    => ['nullable', 'string'],
             'tratamiento'    => ['nullable', 'string'],
-            'antecedentes_alergias'    => ['nullable', 'string'],
-            'antecedentes_lesiones'    => ['nullable', 'string'],
-            'antecedentes_patologicas' => ['nullable', 'string'],
-            'historial_alimentacion'   => ['nullable', 'string'],
         ]);
 
         $consulta->update($request->only([
             'fecha_consulta', 'peso', 'talla', 'diagnostico', 'tratamiento',
-            'antecedentes_alergias', 'antecedentes_lesiones',
-            'antecedentes_patologicas', 'historial_alimentacion',
         ]));
 
         return redirect()

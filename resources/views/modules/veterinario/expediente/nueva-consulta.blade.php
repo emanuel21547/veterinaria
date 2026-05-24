@@ -95,25 +95,25 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12 mb-4">
                         <div class="form-group">
                             <label class="font-weight-bold small text-uppercase text-gray-600">
                                 <i class="fas fa-microscope mr-1 text-primary"></i> Diagnóstico
                             </label>
-                            <textarea name="diagnostico" rows="4"
+                            <textarea name="diagnostico" id="diagnostico" rows="10"
                                       class="form-control @error('diagnostico') is-invalid @enderror"
-                                      placeholder="Describe el diagnóstico de esta consulta...">{{ old('diagnostico') }}</textarea>
+                                      placeholder="Describe el diagnóstico detallado (puedes usar formato)...">{{ old('diagnostico') }}</textarea>
                             @error('diagnostico')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label class="font-weight-bold small text-uppercase text-gray-600">
                                 <i class="fas fa-pills mr-1 text-success"></i> Tratamiento
                             </label>
-                            <textarea name="tratamiento" rows="4"
+                            <textarea name="tratamiento" id="tratamiento" rows="10"
                                       class="form-control @error('tratamiento') is-invalid @enderror"
-                                      placeholder="Medicamentos, dosis, indicaciones...">{{ old('tratamiento') }}</textarea>
+                                      placeholder="Medicamentos, dosis, indicaciones (puedes usar formato)...">{{ old('tratamiento') }}</textarea>
                             @error('tratamiento')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
                     </div>
@@ -121,64 +121,7 @@
             </div>
         </div>
 
-        {{-- ── Antecedentes ─────────────────────────────────────── --}}
-        <div class="card shadow mb-4">
-            <div class="card-header py-3" style="border-left: 4px solid #f6c23e;">
-                <h6 class="m-0 font-weight-bold" style="color:#d4a017;">
-                    <i class="fas fa-history mr-2"></i> Antecedentes
-                </h6>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="font-weight-bold small text-uppercase text-gray-600">
-                                <i class="fas fa-allergies mr-1 text-warning"></i> Alergias
-                            </label>
-                            <textarea name="antecedentes_alergias" rows="3"
-                                      class="form-control"
-                                      placeholder="Alergias conocidas...">{{ old('antecedentes_alergias') }}</textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="font-weight-bold small text-uppercase text-gray-600">
-                                <i class="fas fa-band-aid mr-1 text-danger"></i> Lesiones
-                            </label>
-                            <textarea name="antecedentes_lesiones" rows="3"
-                                      class="form-control"
-                                      placeholder="Lesiones previas...">{{ old('antecedentes_lesiones') }}</textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="font-weight-bold small text-uppercase text-gray-600">
-                                <i class="fas fa-heartbeat mr-1 text-secondary"></i> Patológicas
-                            </label>
-                            <textarea name="antecedentes_patologicas" rows="3"
-                                      class="form-control"
-                                      placeholder="Condiciones patológicas...">{{ old('antecedentes_patologicas') }}</textarea>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        {{-- ── Historial Alimentación ───────────────────────────── --}}
-        <div class="card shadow mb-4">
-            <div class="card-header py-3" style="border-left: 4px solid #36b9cc;">
-                <h6 class="m-0 font-weight-bold text-info">
-                    <i class="fas fa-bone mr-2"></i> Historial de Alimentación
-                </h6>
-            </div>
-            <div class="card-body">
-                <div class="form-group mb-0">
-                    <textarea name="historial_alimentacion" rows="3"
-                              class="form-control"
-                              placeholder="Tipo de alimento, frecuencia, dieta especial...">{{ old('historial_alimentacion') }}</textarea>
-                </div>
-            </div>
-        </div>
 
         {{-- Botones --}}
         <div class="d-flex justify-content-between mb-4">
@@ -192,3 +135,28 @@
     </form>
 
 @endsection
+
+@push('scripts')
+    <!-- CKEditor 5 Classic -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            ClassicEditor
+                .create(document.querySelector('#diagnostico'))
+                .catch(error => {
+                    console.error(error);
+                });
+
+            ClassicEditor
+                .create(document.querySelector('#tratamiento'))
+                .catch(error => {
+                    console.error(error);
+                });
+        });
+    </script>
+    <style>
+        .ck-editor__editable_inline {
+            min-height: 200px;
+        }
+    </style>
+@endpush

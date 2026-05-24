@@ -71,58 +71,23 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12 mb-4">
                         <div class="form-group">
                             <label class="font-weight-bold small text-uppercase text-gray-600"><i class="fas fa-microscope mr-1 text-primary"></i> Diagnóstico</label>
-                            <textarea name="diagnostico" rows="4" class="form-control">{{ old('diagnostico', $consulta->diagnostico) }}</textarea>
+                            <textarea name="diagnostico" id="diagnostico" rows="10" class="form-control">{{ old('diagnostico', $consulta->diagnostico) }}</textarea>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label class="font-weight-bold small text-uppercase text-gray-600"><i class="fas fa-pills mr-1 text-success"></i> Tratamiento</label>
-                            <textarea name="tratamiento" rows="4" class="form-control">{{ old('tratamiento', $consulta->tratamiento) }}</textarea>
+                            <textarea name="tratamiento" id="tratamiento" rows="10" class="form-control">{{ old('tratamiento', $consulta->tratamiento) }}</textarea>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="card shadow mb-4">
-            <div class="card-header py-3" style="border-left: 4px solid #f6c23e;">
-                <h6 class="m-0 font-weight-bold" style="color:#d4a017;"><i class="fas fa-history mr-2"></i> Antecedentes</h6>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="font-weight-bold small text-uppercase text-gray-600"><i class="fas fa-allergies mr-1 text-warning"></i> Alergias</label>
-                            <textarea name="antecedentes_alergias" rows="3" class="form-control">{{ old('antecedentes_alergias', $consulta->antecedentes_alergias) }}</textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="font-weight-bold small text-uppercase text-gray-600"><i class="fas fa-band-aid mr-1 text-danger"></i> Lesiones</label>
-                            <textarea name="antecedentes_lesiones" rows="3" class="form-control">{{ old('antecedentes_lesiones', $consulta->antecedentes_lesiones) }}</textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="font-weight-bold small text-uppercase text-gray-600"><i class="fas fa-heartbeat mr-1 text-secondary"></i> Patológicas</label>
-                            <textarea name="antecedentes_patologicas" rows="3" class="form-control">{{ old('antecedentes_patologicas', $consulta->antecedentes_patologicas) }}</textarea>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="card shadow mb-4">
-            <div class="card-header py-3" style="border-left: 4px solid #36b9cc;">
-                <h6 class="m-0 font-weight-bold text-info"><i class="fas fa-bone mr-2"></i> Historial de Alimentación</h6>
-            </div>
-            <div class="card-body">
-                <textarea name="historial_alimentacion" rows="3" class="form-control">{{ old('historial_alimentacion', $consulta->historial_alimentacion) }}</textarea>
-            </div>
-        </div>
 
         <div class="d-flex justify-content-between mb-4">
             <a href="{{ route('veterinario.mascota.consultas', $consulta->mascota) }}" class="btn btn-secondary">
@@ -135,3 +100,28 @@
     </form>
 
 @endsection
+
+@push('scripts')
+    <!-- CKEditor 5 Classic -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            ClassicEditor
+                .create(document.querySelector('#diagnostico'))
+                .catch(error => {
+                    console.error(error);
+                });
+
+            ClassicEditor
+                .create(document.querySelector('#tratamiento'))
+                .catch(error => {
+                    console.error(error);
+                });
+        });
+    </script>
+    <style>
+        .ck-editor__editable_inline {
+            min-height: 200px;
+        }
+    </style>
+@endpush
