@@ -133,7 +133,7 @@
                             <div class="col-md-6">
                                 <div class="seccion-clinica">
                                     <div class="seccion-titulo"><i class="fas fa-microscope mr-1"></i> Diagnóstico</div>
-                                    <p class="mb-0 small">{{ $consulta->diagnostico }}</p>
+                                    <div class="mb-0 small ck-content">{!! $consulta->diagnostico !!}</div>
                                 </div>
                             </div>
                             @endif
@@ -142,48 +142,14 @@
                             <div class="col-md-6">
                                 <div class="seccion-clinica verde">
                                     <div class="seccion-titulo"><i class="fas fa-pills mr-1"></i> Tratamiento</div>
-                                    <p class="mb-0 small">{{ $consulta->tratamiento }}</p>
+                                    <div class="mb-0 small ck-content">{!! $consulta->tratamiento !!}</div>
                                 </div>
                             </div>
                             @endif
 
-                            @if($consulta->antecedentes_alergias)
-                            <div class="col-md-6">
-                                <div class="seccion-clinica naranja">
-                                    <div class="seccion-titulo"><i class="fas fa-allergies mr-1"></i> Antecedentes — Alergias</div>
-                                    <p class="mb-0 small">{{ $consulta->antecedentes_alergias }}</p>
-                                </div>
-                            </div>
-                            @endif
 
-                            @if($consulta->antecedentes_lesiones)
-                            <div class="col-md-6">
-                                <div class="seccion-clinica rojo">
-                                    <div class="seccion-titulo"><i class="fas fa-band-aid mr-1"></i> Antecedentes — Lesiones</div>
-                                    <p class="mb-0 small">{{ $consulta->antecedentes_lesiones }}</p>
-                                </div>
-                            </div>
-                            @endif
 
-                            @if($consulta->antecedentes_patologicas)
-                            <div class="col-md-6">
-                                <div class="seccion-clinica">
-                                    <div class="seccion-titulo"><i class="fas fa-heartbeat mr-1"></i> Antecedentes — Patológicas</div>
-                                    <p class="mb-0 small">{{ $consulta->antecedentes_patologicas }}</p>
-                                </div>
-                            </div>
-                            @endif
-
-                            @if($consulta->historial_alimentacion)
-                            <div class="col-md-6">
-                                <div class="seccion-clinica info">
-                                    <div class="seccion-titulo"><i class="fas fa-bone mr-1"></i> Historial Alimentación</div>
-                                    <p class="mb-0 small">{{ $consulta->historial_alimentacion }}</p>
-                                </div>
-                            </div>
-                            @endif
-
-                            @if(!$consulta->diagnostico && !$consulta->tratamiento && !$consulta->antecedentes_alergias && !$consulta->antecedentes_lesiones && !$consulta->antecedentes_patologicas && !$consulta->historial_alimentacion)
+                            @if(!$consulta->diagnostico && !$consulta->tratamiento)
                                 <div class="col-12">
                                     <p class="text-muted small text-center mb-0">
                                         <i class="fas fa-info-circle mr-1"></i> Esta consulta no tiene información clínica registrada.
